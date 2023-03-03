@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj numer miesiąca: ");
         int poraRoku = scanner.nextInt();
@@ -74,10 +74,16 @@ public class Main {
         while (true) {
             BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Podaj liczbę lub tekst QUIT aby zakonczyc program: ");
-            String input = buf.readLine();
+            String input = null;
+            int number=0;
+            try {
+                input = buf.readLine();
+                number = Integer.parseInt(input);
+            } catch (Exception e) {
+                System.out.println("Podales tekst rozny od QUIT oraz nie bedzący liczbą Integer");
+            }
             if (input.equalsIgnoreCase("QUIT"))
                 break;
-            int number = Integer.parseInt(input);
             sumNumbers+=number;
             System.out.println("Podales liczbe: " + number+ " a suma wynosi: "+ sumNumbers);
         }
